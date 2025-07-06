@@ -6,14 +6,12 @@ phases:
       python: 3.10
     commands:
       - pip install awscli aws-sam-cli
+
   build:
     commands:
       - pip install -r requirements.txt -t .
       - echo "Packaging the SAM template..."
-      - sam package \
-          --template-file template.yml \
-          --output-template-file template-out.yml \
-          --s3-bucket s3-hanas-slproject-serverless-api
+      - sam package --template-file template.yml --output-template-file template-out.yml --s3-bucket s3-hanas-slproject-serverless-api
 
 artifacts:
   files:
