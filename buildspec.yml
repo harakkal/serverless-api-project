@@ -9,8 +9,13 @@ phases:
 
   build:
     commands:
-      - pip install -r requirements.txt -t .
-      - echo "Packaging the SAM template..."
+      - echo "Installing Python dependencies into ./package..."
+      - pip install -r requirements.txt -t package
+      - echo "Copying lambda_function.py to ./package..."
+      - cp lambda_function.py package/
+      - echo "Zipping function package..."
+      - cd package && zip -r ../function.zip . && cd ..
+      - echo "Packaging the SAM template with zipped Lambda..."
       - sam package --template-file template.yml --output-template-file template-out.yml --s3-bucket s3-hanas-slproject-serverless-api
 
 artifacts:
