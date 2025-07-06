@@ -27,7 +27,7 @@ phases:
 
   post_build:
     commands:
-      - echo "Build and packaging complete on `date`"
+      - echo "Build and packaging complete on $(date)"
       - echo "Generated packaged template: template-out.yml"
 
 artifacts:
