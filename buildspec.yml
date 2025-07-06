@@ -1,9 +1,4 @@
 version: 0.2
-
-env:
-  variables:
-    S3_BUCKET: s3-hanas-slproject-serverless-api
-
 phases:
   install:
     runtime-versions:
@@ -19,11 +14,11 @@ phases:
 
   build:
     commands:
-      - echo "Packaging SAM template using bucket: $S3_BUCKET"
+      - echo "Packaging SAM template using bucket: s3-hanas-slproject-serverless-api"
       - sam package \
           --template-file template.yml \
           --output-template-file template-out.yml \
-          --s3-bucket $S3_BUCKET
+          --s3-bucket s3-hanas-slproject-serverless-api
 
   post_build:
     commands:
