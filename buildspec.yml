@@ -1,11 +1,21 @@
 version: 0.2
+
 phases:
+  install:
+    runtime-versions:
+      python: 3.10
+    commands:
+      - pip install awscli aws-sam-cli
   build:
     commands:
+      - echo "Installing dependencies..."
       - pip install -r requirements.txt -t .
-      - aws cloudformation package --template-file template.yml --output-template-file template-out.yml --s3-bucket s3-hanas-slproject-serverless-api
+      - echo "Packaging the SAM template..."
+      - sam package \
+          --template-file template.yml \
+          --output-template-file template-out.yml \
+          --s3-bucket s3-hanas-slproject-serverless-api
 
 artifacts:
   files:
-    - template.yml
     - template-out.yml
